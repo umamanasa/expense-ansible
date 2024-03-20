@@ -17,8 +17,8 @@
         name: mysql-community-server
         state: installed
 
-    - name: Set Root Password
-      ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
-
     - name: Systemd-Setup
       ansible.builtin.import_tasks: systemd-setup.yml
+
+    - name: Set Root Password
+      ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
