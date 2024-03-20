@@ -40,7 +40,7 @@
     - name: Download & Extract Backend Content
       ansible.builtin.unarchive:
         src: https://expense-artifacts.s3.amazonaws.com/backend.zip
-        dest: /tmp/backend.zip
+        dest: /app
         remote_src: yes
 
     - name: Download NodeJS Dependencies
