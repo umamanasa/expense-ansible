@@ -11,11 +11,16 @@
     name: mysql-community-server
     state: installed
 
-- name: Start MYSQL Service
-  ansible.builtin.systemd:
-    name: mysqld
-    state: restarted
-    enabled: yes
+#- name: Start MYSQL Service
+#  ansible.builtin.systemd:
+#    name: mysqld
+#    state: restarted
+#    enabled: yes
+
+- name: Systemd-Setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup
 
 - name: Set Root Password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
