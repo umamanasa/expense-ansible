@@ -1,3 +1,6 @@
+- name: Set Hostname
+  ansible.builtin.shell: set-hostname {{ component }}
+
 - name: Start {{component}} Service
   ansible.builtin.systemd:
     name: "{{component}}"
