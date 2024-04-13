@@ -55,4 +55,9 @@
     name: common
     tasks_from: systemd-setup
 
+- name: Filebeat SetUp
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+
 
