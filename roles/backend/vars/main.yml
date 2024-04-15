@@ -1,3 +1,3 @@
 component: backend
 log_type: json
-log_file: /var/log/catalogue.log
+log_file: /var/log/backend.log
