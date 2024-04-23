@@ -31,11 +31,21 @@
     path:  /app
     state: directory
 
-- name: Download & Extract Backend Content
+#- name: Download & Extract Backend Content
+#  ansible.builtin.unarchive:
+#    src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+#    dest: /app
+#    remote_src: yes
+
+- name: Download & Extract Backend Content from Nexus
   ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/backend.zip
+    src: http://{{username}}:{{password}}@172.31.81.233:8081/repository/expense-backend/expense-backend-{{appVersion}}.zip
     dest: /app
     remote_src: yes
+  vars:
+    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1') }}"
+    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1') }}"
+    appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
 
 - name: Download NodeJS Dependencies
   ansible.builtin.shell: npm install
