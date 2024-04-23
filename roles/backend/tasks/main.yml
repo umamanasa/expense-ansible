@@ -39,12 +39,12 @@
 
 - name: Download & Extract Backend Content from Nexus
   ansible.builtin.unarchive:
-    src: http://{{username}}:{{password}}@172.31.81.233:8081/repository/expense-backend/expense-backend-{{appVersion}}.zip
+    src: http://{{username}}:{{password}}@172.31.81.233:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
     dest: /app
     remote_src: yes
   vars:
-    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1') }}"
-    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1') }}"
+    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.username', region='us-east-1') }}"
+    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.password', region='us-east-1') }}"
     appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
 
 - name: Download NodeJS Dependencies
