@@ -26,21 +26,21 @@
     path: /usr/share/nginx/html
     state: directory
 
-- name: Download & Extract Frontend Content
-  ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
-
-#- name: Download & Extract frontend Content from Nexus
+#- name: Download & Extract Frontend Content
 #  ansible.builtin.unarchive:
-#    src: http://{{username}}:{{password}}@172.31.81.233:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
+#    src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
 #    dest: /usr/share/nginx/html
 #    remote_src: yes
-#  vars:
-#    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1') }}"
-#    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1') }}"
-#    appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
+
+- name: Download & Extract frontend Content from Nexus
+  ansible.builtin.unarchive:
+    src: http://{{username}}:{{password}}@172.31.81.233:8081/repository/{{component}}/{{component}}-{{appVersion}}.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+  vars:
+    username: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.username', region='us-east-1') }}"
+    password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1') }}"
+    appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
 
 - name: Restart NGINX Service
   ansible.builtin.systemd:
