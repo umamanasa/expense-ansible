@@ -47,10 +47,10 @@
     password: "{{ lookup('amazon.aws.aws_ssm', 'nexus.{{env}}.password', region='us-east-1') }}"
     appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
 
-- name: Download NodeJS Dependencies
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
+#- name: Download NodeJS Dependencies
+#  ansible.builtin.shell: npm install
+#  args:
+#    chdir: /app
 
 - name: Install MYSQL client
   ansible.builtin.yum:
