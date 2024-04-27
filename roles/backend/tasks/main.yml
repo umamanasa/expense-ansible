@@ -15,7 +15,7 @@
   ignore_errors: yes
 
 - name: Install NodeJS Repos
-  ansible.builtin.shell: -sL https://rpm.nodesource.com/setup_lts.x
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
   when: command_status.rc !=0
 
 - name: Install NodeJS
