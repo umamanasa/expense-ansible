@@ -9,13 +9,20 @@
 - name: Enable nodejs18
   ansible.builtin.shell: yum module enable nodejs:18 -y
 
-#- name: Install NodeJS Repos
-#  ansible.builtin.shell: -sL https://rpm.nodesource.com/setup_lts.x
+- name: Check NodeJS is Installed
+  ansible.builtin.shell: type npm
+  register: command_status
+  ignore_errors: yes
+
+- name: Install NodeJS Repos
+  ansible.builtin.shell: -sL https://rpm.nodesource.com/setup_lts.x
+  when: command_status.rc !=0
 
 - name: Install NodeJS
   ansible.builtin.yum:
     name: nodejs
     state: installed
+  when: command_status.rc !=0
 
 - name: Add Application User
   ansible.builtin.user:
