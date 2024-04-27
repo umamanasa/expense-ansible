@@ -43,6 +43,7 @@
     appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{component}}.{{env}}.appVersion', region='us-east-1') }}"
 
 
+
 - name: Restart NGINX Service
   ansible.builtin.systemd:
     name: nginx
