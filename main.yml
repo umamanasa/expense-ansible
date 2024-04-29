@@ -1,5 +1,6 @@
 - name: Expense Project SetUP
   hosts: all
   become: true
+  serial: 1
   roles:
     - "{{ component }}"
