@@ -6,7 +6,7 @@
     daemon_reload: yes
 
 ## Rsyslog Config
-- name: Setup Rsyslog congig file
+- name: Setup Rsyslog config file
   ansible.builtin.template:
     src: "rsyslog.conf"
     dest: /etc/rsyslog.d/expense.conf
