@@ -9,7 +9,7 @@
     dest: /etc/nginx/default.d/expense.conf
 
 - name: Copy NGINX conf - Main Config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
@@ -60,7 +60,7 @@
     remote_src: yes
 
 - name: Copy Nginx Prometheus Exporter Service
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: nginx-exporter.service
     dest: /etc/systemd/system/nginx_exporter.service
 
