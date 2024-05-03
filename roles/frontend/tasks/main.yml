@@ -3,10 +3,10 @@
     name: nginx
     state: installed
 
-- name: Copy Expense-NGINX conf - Project Config
-  ansible.builtin.copy:
-    src: nginx-expense.conf
-    dest: /etc/nginx/default.d/expense.conf
+#- name: Copy Expense-NGINX conf - Project Config
+#  ansible.builtin.copy:
+#    src: nginx-expense.conf
+#    dest: /etc/nginx/default.d/expense.conf
 
 - name: Copy NGINX conf - Main Config
   ansible.builtin.copy:
