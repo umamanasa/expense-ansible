@@ -41,6 +41,7 @@
 
 
 
+
 - name: Restart NGINX Service
   ansible.builtin.systemd:
     name: nginx
