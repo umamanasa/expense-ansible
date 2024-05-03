@@ -1,5 +1,3 @@
-- name: Set Hostname
-  ansible.builtin.shell: set-hostname backend
 
 - name: Copy Backend service file
   ansible.builtin.template:
